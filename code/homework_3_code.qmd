@@ -1,0 +1,40 @@
+---
+title: "homework_3_code"
+format: html
+---
+
+
+Link to GitHub repository: 
+
+# Set Up
+
+```{r}
+#read in packages
+library(tidyverse)
+library(here)
+library(gt)
+library(janitor)
+library(readxl)
+
+#read in data for personal data project
+mydata <- read.csv("data/mydata.csv")
+
+```
+
+
+# Problem 1: Personal Data
+
+I will be comparing the mean productivity score between two main groups, when I was alone and when I was accompanied for the study sessions in order to determine if working with other people increases my productivity, which is calculated from time spent working and how focused I was. This can help me determine if there is a statistical or significant difference between groups, because I feel like I spend more time on a task in one sitting when I am with other people, so I think my mean productivity will be higher in the accompanied group.
+
+
+
+
+
+
+
+
+
+
+
+
+
