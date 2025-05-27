@@ -87,11 +87,43 @@ mydata_means <- ggplot(data = mydata,
 mydata_means
 
 
-
 ```
 
 
+```{r}
 
+
+# visualizing productivity score vs final productivity score
+mydata_sleep <- ggplot(data = mydata,
+         aes(x = sleep_decimal_hour,
+             y = final_productivity_score)) +
+  geom_point()
+
+mydata_sleep
+
+# visualizing deadline type vs final productivity score
+mydata_deadlinesummary <- mydata |> 
+  group_by(deadline_type) |> 
+  summarise(mean_score = mean(final_productivity_score))
+
+mydata_deadline <- ggplot(data = mydata,
+                          aes(x = deadline_type,
+                              y = final_productivity_score,
+                              color = deadline_type)) +
+  geom_jitter(height = 0,
+              width = 0.2,
+              shape = 1) +
+  geom_point(data = mydata_deadlinesummary,
+             aes(x = deadline_type,
+                 y = mean_score),
+             inherit.aes = FALSE,
+             color = "black",
+             size = 2)
+
+
+mydata_deadline
+
+```
 
 
 
