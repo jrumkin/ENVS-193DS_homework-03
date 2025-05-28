@@ -121,6 +121,19 @@ mydata_deadline
 
 #using gt package to make a table
 
+summary_table <- gt(mydata_summary) |> # creating a summary table of final productivity score using the previously created mydata_summary
+  cols_label( #manual labels for each column
+    mean_score = "Mean Score",
+    sd = "Standard Deviation",
+    se = "Standard Error",
+    ci_lower = "Confidence Interval, lower",
+    ci_upper = "Confidence Interval, upper"
+  ) |> 
+  tab_header( #title that appears above the table
+    title = "Productivity Score Calculation Summary by Study Session Type"
+  )
+
+summary_table #print the table
 
 ```
 
