@@ -10,8 +10,7 @@ execute:
   warning: false # use this to make sure warnings don't show up
 ---
 
-
-Link to GitHub repository: 
+Link to GitHub repository:
 
 # Set Up
 
@@ -28,78 +27,65 @@ mydata <- read.csv("data/mydata.csv")
 
 ```
 
-
 # Problem 1: Personal Data
 
-## a. Data summarizing 
+## a. Data summarizing
 
 I will be comparing the mean productivity score between two main groups, when I was alone and when I was accompanied for the study sessions in order to determine if working with other people increases my productivity, which is calculated from time spent working and how focused I was. This can help me determine if there is a statistical or significant difference between groups, because I feel like I spend more time on a task in one sitting when I am with other people, so I think my mean productivity will be higher in the accompanied group.
 
-## b. Visualization 
-
+## b. Visualization
 
 ```{r}
 #summarizing personal data
-mydata_summary <-  mydata |> 
-  group_by(accompanied) |> 
-  summarise(mean_score = round(mean(final_productivity_score),digits = 1),
-            sd = round(sd(final_productivity_score), digits = 1),
-            se = round((sd(final_productivity_score)/sqrt(length(final_productivity_score))),digits = 1),
-            ci_lower = round(mean_score - 1.96 * (sd(final_productivity_score)/ sqrt(length(final_productivity_score))),digits = 1),
-            ci_upper = round(mean_score + 1.96 * (sd(final_productivity_score) / sqrt(length(final_productivity_score))),digits = 1)
+mydata_summary <-  mydata |> #make an object called mydata_summary using mydata file
+  group_by(accompanied) |> #group the sumary by company type
+  summarise(mean_score = round(mean(final_productivity_score),digits = 1), #find mean
+            sd = round(sd(final_productivity_score), digits = 1), #find standard deviation
+            se = round((sd(final_productivity_score)/sqrt(length(final_productivity_score))),digits = 1), #find standard error
+            ci_lower = round(mean_score - 1.96 * (sd(final_productivity_score)/ sqrt(length(final_productivity_score))),digits = 1), #find lower confidence interval at 95%
+            ci_upper = round(mean_score + 1.96 * (sd(final_productivity_score) / sqrt(length(final_productivity_score))),digits = 1) #find upper confidence interval at 95%
   )
-
 
 
 ```
 
-
 ```{r}
 
-#creating visualizations for personal data 
+#creating visualizations for personal data, Figure 1.
 
-mydata_means <- ggplot(data = mydata,
+mydata_means <- ggplot(data = mydata, #use ggplot to create a visualization called mydata_means with data from mydata
                        aes(x = accompanied,
                            y = final_productivity_score,
                            color = accompanied)) +
-  geom_jitter(height = 0,
-              width = 0.2,
-              shape = 1) +
-  geom_errorbar(data = mydata_summary,
+  geom_jitter(height = 0, #add geometry of jitter plot, 0 height jitter
+              width = 0.2, #0.2 jitter width
+              shape = 1) + #shape is open circles for the jitter points
+  geom_errorbar(data = mydata_summary, #add a geometry of an error bar from data of mydata_summary
                 aes(x = accompanied,
                     y = mean_score,
                     ymin = ci_lower,
                     ymax = ci_upper,
                     width = 0.15)) +
-  geom_point(data = mydata_summary,
+  geom_point(data = mydata_summary, #add geometry of a point from mydata_summary of the mean productivity score
              aes(x = accompanied,
                  y = mean_score),
-             inherit.aes = FALSE, 
-             color = "black",
+             inherit.aes = FALSE, #the geom_point layer will not inherit aesthitcs settings
+             color = "black", #point showing the mean is black
              size = 2) +
-  labs(x = "Company Type",
+  labs(x = "Company Type", #labling the x and y axis and the title
        y = "Final Productivity Score",
        title = "Mean Productivity Score between \nAccompanied and Alone study sessions") +
-  scale_color_manual(values = c("Accompanied" = "#377b42",
+  scale_color_manual(values = c("Accompanied" = "#377b42", #manual colors for groups 
                                 "Alone" = "#0c78bd")) +
-  theme(legend.position = "none")
+  theme(legend.position = "none") #removing the legend for redundancy
 
-mydata_means
+mydata_means #display the visualization
 
 
 ```
 
-
 ```{r}
 
-
-# visualizing productivity score vs final productivity score
-mydata_sleep <- ggplot(data = mydata,
-         aes(x = sleep_decimal_hour,
-             y = final_productivity_score)) +
-  geom_point()
-
-mydata_sleep
 
 # visualizing deadline type vs final productivity score
 mydata_deadlinesummary <- mydata |> 
@@ -125,7 +111,18 @@ mydata_deadline
 
 ```
 
+## c. Caption
 
+**Figure 1. Average productivity scores are higher for accompanied study sessions compared to alone study sessions. ** The black point is the mean productivity score in each group, with error bars showing the confidence interval of the mean at a 95% confidence level, while open points represent individual data points. Colored by group type of accompanied (n = __) and alone (n = __)
+
+## d. Table presentation
+
+```{r}
+
+#using gt package to make a table
+
+
+```
 
 
 
