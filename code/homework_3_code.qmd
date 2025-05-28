@@ -23,7 +23,7 @@ library(janitor)
 library(readxl)
 
 #read in data for personal data project
-mydata <- read.csv("data/mydata.csv")
+mydata <- read.csv("C:/Users/jlrum/MyGit/ENVS-193DS_homework-03/data/mydata.csv")
 
 ```
 
