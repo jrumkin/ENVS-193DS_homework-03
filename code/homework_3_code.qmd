@@ -10,7 +10,7 @@ execute:
   warning: false # use this to make sure warnings don't show up
 ---
 
-Link to GitHub repository:
+Link to GitHub repository: https://jrumkin.github.io/ENVS-193DS_homework-03/code/homework_3_code.html
 
 # Set Up
 
@@ -59,7 +59,7 @@ mydata_means <- ggplot(data = mydata, #use ggplot to create a visualization call
                            color = accompanied)) +
   geom_jitter(height = 0, #add geometry of jitter plot, 0 height jitter
               width = 0.2, #0.2 jitter width
-              shape = 1) + #shape is open circles for the jitter points
+              shape = 20) + #shape is open circles for the jitter points
   geom_errorbar(data = mydata_summary, #add a geometry of an error bar from data of mydata_summary
                 aes(x = accompanied,
                     y = mean_score,
@@ -109,6 +109,16 @@ mydata_deadline <- ggplot(data = mydata,
 
 mydata_deadline
 
+#visualizing productivity vs sleep
+
+mydata_sleep <- ggplot(data = mydata, #creating a visualization with ggplot, obect name is mydata_sleep
+       aes(x = sleep_decimal_hour, #sleep in decimal hours on the x axis
+           y = final_productivity_score)) + #final productivity score on the y axis
+  geom_point() + #add scatter plot geometry
+  geom_smooth(method = lm, se = TRUE) #add a line of best fit, lm = linear model, se = standard error shading is shown
+
+mydata_sleep #print the mydata_sleep plot
+
 ```
 
 ## c. Caption
@@ -136,6 +146,28 @@ summary_table <- gt(mydata_summary) |> # creating a summary table of final produ
 summary_table #print the table
 
 ```
+
+
+# Problem 2. Affective Visualization
+
+## a. Describe what an affective visualization could look like for personal data.
+
+For my personality and executive function type I tend to get more done when I have external cues or deadlines, so I'm not surprised that my data shows I may get more done when I am working with others. I want my affective visualization to focus on community and the achievement of actually getting all that work done. Something I wasn't expecting was that the plot is also a visualization of all my time and effort, so I also want the affective visualization to focus on accomplishment and not on comparison. 
+
+## b. Create a sketch (on paper) of your idea
+
+
+## c. Make a draft of your visualization
+
+## d. Write an artist statement
+
+
+# Problem 3. Statstical Critique
+
+## a. Revist and Summarize
+
+
+
 
 
 
