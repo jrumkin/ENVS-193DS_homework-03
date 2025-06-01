@@ -99,6 +99,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#problem-3.-statstical-critique" id="toc-problem-3.-statstical-critique" class="nav-link" data-scroll-target="#problem-3.-statstical-critique">Problem 3. Statstical Critique</a>
   <ul class="collapse">
   <li><a href="#a.-revist-and-summarize" id="toc-a.-revist-and-summarize" class="nav-link" data-scroll-target="#a.-revist-and-summarize">a. Revist and Summarize</a></li>
+  <li><a href="#b.-visual-clarity" id="toc-b.-visual-clarity" class="nav-link" data-scroll-target="#b.-visual-clarity">b. Visual clarity</a></li>
+  <li><a href="#c.-aesthetic-clarity" id="toc-c.-aesthetic-clarity" class="nav-link" data-scroll-target="#c.-aesthetic-clarity">c.&nbsp;Aesthetic clarity</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -168,38 +170,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">se =</span> <span class="fu">round</span>((<span class="fu">sd</span>(final_productivity_score)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">length</span>(final_productivity_score))),<span class="at">digits =</span> <span class="dv">1</span>), <span class="co">#find standard error</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">ci_lower =</span> <span class="fu">round</span>(mean_score <span class="sc">-</span> <span class="fl">1.96</span> <span class="sc">*</span> (<span class="fu">sd</span>(final_productivity_score)<span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">length</span>(final_productivity_score))),<span class="at">digits =</span> <span class="dv">1</span>), <span class="co">#find lower confidence interval at 95%</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">ci_upper =</span> <span class="fu">round</span>(mean_score <span class="sc">+</span> <span class="fl">1.96</span> <span class="sc">*</span> (<span class="fu">sd</span>(final_productivity_score) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">length</span>(final_productivity_score))),<span class="at">digits =</span> <span class="dv">1</span>) <span class="co">#find upper confidence interval at 95%</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># exploring personal data distribution</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mydata,</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">sample =</span> final_productivity_score)) <span class="sc">+</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_qq</span>() <span class="sc">+</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_qq_line</span>() <span class="sc">+</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>accompanied)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="homework_3_code_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#almost normal data! Alone data is like not really that normal, there are some outliers so idk if this should count. </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#creating visualizations for personal data, Figure 1.</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>mydata_means <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> mydata, <span class="co">#use ggplot to create a visualization called mydata_means with data from mydata</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">aes</span>(<span class="at">x =</span> accompanied,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                           <span class="at">y =</span> final_productivity_score,</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                           <span class="at">color =</span> accompanied)) <span class="sc">+</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">height =</span> <span class="dv">0</span>, <span class="co">#add geometry of jitter plot, 0 height jitter</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">width =</span> <span class="fl">0.2</span>, <span class="co">#0.2 jitter width</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">shape =</span> <span class="dv">20</span>) <span class="sc">+</span> <span class="co">#shape is open circles for the jitter points</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">data =</span> mydata_summary, <span class="co">#add a geometry of an error bar from data of mydata_summary</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>                <span class="fu">aes</span>(<span class="at">x =</span> accompanied,</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>                    <span class="at">y =</span> mean_score,</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ymin =</span> ci_lower,</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ymax =</span> ci_upper,</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>                    <span class="at">width =</span> <span class="fl">0.15</span>)) <span class="sc">+</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> mydata_summary, <span class="co">#add geometry of a point from mydata_summary of the mean productivity score</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> accompanied,</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>                 <span class="at">y =</span> mean_score),</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>             <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>, <span class="co">#the geom_point layer will not inherit aesthitcs settings</span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">"black"</span>, <span class="co">#point showing the mean is black</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Company Type"</span>, <span class="co">#labling the x and y axis and the title</span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Final Productivity Score"</span>,</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Mean Productivity Score between </span><span class="sc">\n</span><span class="st">Accompanied and Alone study sessions"</span>) <span class="sc">+</span></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Accompanied"</span> <span class="ot">=</span> <span class="st">"#377b42"</span>, <span class="co">#manual colors for groups </span></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>                                <span class="st">"Alone"</span> <span class="ot">=</span> <span class="st">"#0c78bd"</span>)) <span class="sc">+</span></span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="co">#removing the legend for redundancy</span></span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>mydata_means <span class="co">#display the visualization</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#creating visualizations for personal data, Figure 1.</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>mydata_means <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> mydata, <span class="co">#use ggplot to create a visualization called mydata_means with data from mydata</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">aes</span>(<span class="at">x =</span> accompanied,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                           <span class="at">y =</span> final_productivity_score,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                           <span class="at">color =</span> accompanied)) <span class="sc">+</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">height =</span> <span class="dv">0</span>, <span class="co">#add geometry of jitter plot, 0 height jitter</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">width =</span> <span class="fl">0.2</span>, <span class="co">#0.2 jitter width</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">shape =</span> <span class="dv">20</span>) <span class="sc">+</span> <span class="co">#shape is open circles for the jitter points</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">data =</span> mydata_summary, <span class="co">#add a geometry of an error bar from data of mydata_summary</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>                <span class="fu">aes</span>(<span class="at">x =</span> accompanied,</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>                    <span class="at">y =</span> mean_score,</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ymin =</span> ci_lower,</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ymax =</span> ci_upper,</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>                    <span class="at">width =</span> <span class="fl">0.15</span>)) <span class="sc">+</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> mydata_summary, <span class="co">#add geometry of a point from mydata_summary of the mean productivity score</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> accompanied,</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>                 <span class="at">y =</span> mean_score),</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>             <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>, <span class="co">#the geom_point layer will not inherit aesthitcs settings</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">"black"</span>, <span class="co">#point showing the mean is black</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Company Type"</span>, <span class="co">#labling the x and y axis and the title</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Final Productivity Score"</span>,</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Mean Productivity Score between </span><span class="sc">\n</span><span class="st">Accompanied and Alone study sessions"</span>) <span class="sc">+</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Accompanied"</span> <span class="ot">=</span> <span class="st">"#377b42"</span>, <span class="co">#manual colors for groups </span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>                                <span class="st">"Alone"</span> <span class="ot">=</span> <span class="st">"#0c78bd"</span>)) <span class="sc">+</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="co">#removing the legend for redundancy</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>mydata_means <span class="co">#display the visualization</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -209,27 +228,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># visualizing deadline type vs final productivity score</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>mydata_deadlinesummary <span class="ot">&lt;-</span> mydata <span class="sc">|&gt;</span> </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(deadline_type) <span class="sc">|&gt;</span> </span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_score =</span> <span class="fu">mean</span>(final_productivity_score))</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>mydata_deadline <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> mydata,</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">aes</span>(<span class="at">x =</span> deadline_type,</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>                              <span class="at">y =</span> final_productivity_score,</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>                              <span class="at">color =</span> deadline_type)) <span class="sc">+</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">height =</span> <span class="dv">0</span>,</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>              <span class="at">width =</span> <span class="fl">0.2</span>,</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>              <span class="at">shape =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> mydata_deadlinesummary,</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> deadline_type,</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>                 <span class="at">y =</span> mean_score),</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>             <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">"black"</span>,</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">2</span>)</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>mydata_deadline</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># visualizing deadline type vs final productivity score</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>mydata_deadlinesummary <span class="ot">&lt;-</span> mydata <span class="sc">|&gt;</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(deadline_type) <span class="sc">|&gt;</span> </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_score =</span> <span class="fu">mean</span>(final_productivity_score))</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>mydata_deadline <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> mydata,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">aes</span>(<span class="at">x =</span> deadline_type,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>                              <span class="at">y =</span> final_productivity_score,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>                              <span class="at">color =</span> deadline_type)) <span class="sc">+</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">height =</span> <span class="dv">0</span>,</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>              <span class="at">width =</span> <span class="fl">0.2</span>,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>              <span class="at">shape =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> mydata_deadlinesummary,</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> deadline_type,</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>                 <span class="at">y =</span> mean_score),</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>             <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">"black"</span>,</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">2</span>)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>mydata_deadline</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -237,15 +256,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#visualizing productivity vs sleep</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>mydata_sleep <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> mydata, <span class="co">#creating a visualization with ggplot, obect name is mydata_sleep</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> sleep_decimal_hour, <span class="co">#sleep in decimal hours on the x axis</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> final_productivity_score)) <span class="sc">+</span> <span class="co">#final productivity score on the y axis</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="co">#add scatter plot geometry</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> <span class="cn">TRUE</span>) <span class="co">#add a line of best fit, lm = linear model, se = standard error shading is shown</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>mydata_sleep <span class="co">#print the mydata_sleep plot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#visualizing productivity vs sleep</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>mydata_sleep <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> mydata, <span class="co">#creating a visualization with ggplot, obect name is mydata_sleep</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> sleep_decimal_hour, <span class="co">#sleep in decimal hours on the x axis</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> final_productivity_score)) <span class="sc">+</span> <span class="co">#final productivity score on the y axis</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="co">#add scatter plot geometry</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> <span class="cn">TRUE</span>) <span class="co">#add a line of best fit, lm = linear model, se = standard error shading is shown</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>mydata_sleep <span class="co">#print the mydata_sleep plot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -262,39 +281,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="d.-table-presentation" class="level2">
 <h2 class="anchored" data-anchor-id="d.-table-presentation">d.&nbsp;Table presentation</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#using gt package to make a table</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>summary_table <span class="ot">&lt;-</span> <span class="fu">gt</span>(mydata_summary) <span class="sc">|&gt;</span> <span class="co"># creating a summary table of final productivity score using the previously created mydata_summary</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>( <span class="co">#manual labels for each column</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_score =</span> <span class="st">"Mean Score"</span>,</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd =</span> <span class="st">"Standard Deviation"</span>,</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">se =</span> <span class="st">"Standard Error"</span>,</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">ci_lower =</span> <span class="st">"Confidence Interval, lower"</span>,</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">ci_upper =</span> <span class="st">"Confidence Interval, upper"</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>( <span class="co">#title that appears above the table</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Productivity Score Calculation Summary by Study Session Type"</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>summary_table <span class="co">#print the table</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#using gt package to make a table</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>summary_table <span class="ot">&lt;-</span> <span class="fu">gt</span>(mydata_summary) <span class="sc">|&gt;</span> <span class="co"># creating a summary table of final productivity score using the previously created mydata_summary</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>( <span class="co">#manual labels for each column</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_score =</span> <span class="st">"Mean Score"</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd =</span> <span class="st">"Standard Deviation"</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">se =</span> <span class="st">"Standard Error"</span>,</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">ci_lower =</span> <span class="st">"Confidence Interval, lower"</span>,</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">ci_upper =</span> <span class="st">"Confidence Interval, upper"</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>( <span class="co">#title that appears above the table</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Productivity Score Calculation Summary by Study Session Type"</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>summary_table <span class="co">#print the table</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="vgudrecjzp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#vgudrecjzp table {
+<div id="jmnxagwcsm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#jmnxagwcsm table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#vgudrecjzp thead, #vgudrecjzp tbody, #vgudrecjzp tfoot, #vgudrecjzp tr, #vgudrecjzp td, #vgudrecjzp th {
+#jmnxagwcsm thead, #jmnxagwcsm tbody, #jmnxagwcsm tfoot, #jmnxagwcsm tr, #jmnxagwcsm td, #jmnxagwcsm th {
   border-style: none;
 }
 
-#vgudrecjzp p {
+#jmnxagwcsm p {
   margin: 0;
   padding: 0;
 }
 
-#vgudrecjzp .gt_table {
+#jmnxagwcsm .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -320,12 +339,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-left-color: #D3D3D3;
 }
 
-#vgudrecjzp .gt_caption {
+#jmnxagwcsm .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#vgudrecjzp .gt_title {
+#jmnxagwcsm .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -337,7 +356,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-width: 0;
 }
 
-#vgudrecjzp .gt_subtitle {
+#jmnxagwcsm .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -349,7 +368,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-width: 0;
 }
 
-#vgudrecjzp .gt_heading {
+#jmnxagwcsm .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -361,13 +380,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#vgudrecjzp .gt_bottom_border {
+#jmnxagwcsm .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#vgudrecjzp .gt_col_headings {
+#jmnxagwcsm .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -382,7 +401,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#vgudrecjzp .gt_col_heading {
+#jmnxagwcsm .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -402,7 +421,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#vgudrecjzp .gt_column_spanner_outer {
+#jmnxagwcsm .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -414,15 +433,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 4px;
 }
 
-#vgudrecjzp .gt_column_spanner_outer:first-child {
+#jmnxagwcsm .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#vgudrecjzp .gt_column_spanner_outer:last-child {
+#jmnxagwcsm .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#vgudrecjzp .gt_column_spanner {
+#jmnxagwcsm .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -434,11 +453,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   width: 100%;
 }
 
-#vgudrecjzp .gt_spanner_row {
+#jmnxagwcsm .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#vgudrecjzp .gt_group_heading {
+#jmnxagwcsm .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -464,7 +483,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   text-align: left;
 }
 
-#vgudrecjzp .gt_empty_group_heading {
+#jmnxagwcsm .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -479,15 +498,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: middle;
 }
 
-#vgudrecjzp .gt_from_md > :first-child {
+#jmnxagwcsm .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#vgudrecjzp .gt_from_md > :last-child {
+#jmnxagwcsm .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#vgudrecjzp .gt_row {
+#jmnxagwcsm .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -506,7 +525,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#vgudrecjzp .gt_stub {
+#jmnxagwcsm .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -519,7 +538,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#vgudrecjzp .gt_stub_row_group {
+#jmnxagwcsm .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -533,15 +552,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: top;
 }
 
-#vgudrecjzp .gt_row_group_first td {
+#jmnxagwcsm .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#vgudrecjzp .gt_row_group_first th {
+#jmnxagwcsm .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#vgudrecjzp .gt_summary_row {
+#jmnxagwcsm .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -551,16 +570,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#vgudrecjzp .gt_first_summary_row {
+#jmnxagwcsm .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#vgudrecjzp .gt_first_summary_row.thick {
+#jmnxagwcsm .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#vgudrecjzp .gt_last_summary_row {
+#jmnxagwcsm .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -570,7 +589,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#vgudrecjzp .gt_grand_summary_row {
+#jmnxagwcsm .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -580,7 +599,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#vgudrecjzp .gt_first_grand_summary_row {
+#jmnxagwcsm .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -590,7 +609,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-color: #D3D3D3;
 }
 
-#vgudrecjzp .gt_last_grand_summary_row_top {
+#jmnxagwcsm .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -600,11 +619,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#vgudrecjzp .gt_striped {
+#jmnxagwcsm .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#vgudrecjzp .gt_table_body {
+#jmnxagwcsm .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -613,7 +632,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#vgudrecjzp .gt_footnotes {
+#jmnxagwcsm .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -627,7 +646,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#vgudrecjzp .gt_footnote {
+#jmnxagwcsm .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -636,7 +655,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#vgudrecjzp .gt_sourcenotes {
+#jmnxagwcsm .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -650,7 +669,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#vgudrecjzp .gt_sourcenote {
+#jmnxagwcsm .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -658,72 +677,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#vgudrecjzp .gt_left {
+#jmnxagwcsm .gt_left {
   text-align: left;
 }
 
-#vgudrecjzp .gt_center {
+#jmnxagwcsm .gt_center {
   text-align: center;
 }
 
-#vgudrecjzp .gt_right {
+#jmnxagwcsm .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#vgudrecjzp .gt_font_normal {
+#jmnxagwcsm .gt_font_normal {
   font-weight: normal;
 }
 
-#vgudrecjzp .gt_font_bold {
+#jmnxagwcsm .gt_font_bold {
   font-weight: bold;
 }
 
-#vgudrecjzp .gt_font_italic {
+#jmnxagwcsm .gt_font_italic {
   font-style: italic;
 }
 
-#vgudrecjzp .gt_super {
+#jmnxagwcsm .gt_super {
   font-size: 65%;
 }
 
-#vgudrecjzp .gt_footnote_marks {
+#jmnxagwcsm .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#vgudrecjzp .gt_asterisk {
+#jmnxagwcsm .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#vgudrecjzp .gt_indent_1 {
+#jmnxagwcsm .gt_indent_1 {
   text-indent: 5px;
 }
 
-#vgudrecjzp .gt_indent_2 {
+#jmnxagwcsm .gt_indent_2 {
   text-indent: 10px;
 }
 
-#vgudrecjzp .gt_indent_3 {
+#jmnxagwcsm .gt_indent_3 {
   text-indent: 15px;
 }
 
-#vgudrecjzp .gt_indent_4 {
+#jmnxagwcsm .gt_indent_4 {
   text-indent: 20px;
 }
 
-#vgudrecjzp .gt_indent_5 {
+#jmnxagwcsm .gt_indent_5 {
   text-indent: 25px;
 }
 
-#vgudrecjzp .katex-display {
+#jmnxagwcsm .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#vgudrecjzp div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#jmnxagwcsm div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -785,11 +804,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="problem-3.-statstical-critique" class="level1">
 <h1>Problem 3. Statstical Critique</h1>
+<p>Paper Citation: Robuck, A. R., Hudak, C. A., Agvent, L., Emery, G., Ryan, P. G., Perold, V., Powers, K. D., Pedersen, J., Thompson, M. A., Suca, J. J., Moore, M. J., Harms, C. A., Bugoni, L., Shield, G., Glass, T., Wiley, D. N., &amp; Lohmann, R. (2022). Birds of a feather eat plastic Together: High levels of plastic ingestion in great shearwater adults and juveniles across their annual migratory cycle. Frontiers in Marine Science, 8. <a href="https://doi.org/10.3389/fmars.2021.719721" class="uri">https://doi.org/10.3389/fmars.2021.719721</a></p>
+<p>DOI: <a href="https://doi.org/10.3389/fmars.2021.719721">https://doi.org/10.3389/fmars.2021.719721</a></p>
 <section id="a.-revist-and-summarize" class="level2">
 <h2 class="anchored" data-anchor-id="a.-revist-and-summarize">a. Revist and Summarize</h2>
-<p>Paper Citation:</p>
-<p>DOI: <a href="https://doi.org/10.3389/fmars.2021.719721">https://doi.org/10.3389/fmars.2021.719721</a></p>
-<p>These authors are using the Kruskill Wallis test to determine if there are differences between</p>
+<p>These authors are using the Kruskill Wallis test to determine if there are differences between several different groups of bird region and age, and the variable being tested is plastic fragment size for both length and area.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figure4.png" class="img-fluid figure-img"></p>
+<figcaption>figure 4</figcaption>
+</figure>
+</div>
+</section>
+<section id="b.-visual-clarity" class="level2">
+<h2 class="anchored" data-anchor-id="b.-visual-clarity">b. Visual clarity</h2>
+<p>The authors clearly label the axis and legend of this figure, but I wish the legend was more prominent or the figure included a title to explain the point of the figure. On first glance it looks like the take away is that as plastic fragments get longer, they get wider or have more surface area, but the actual take away is that certain regions have larger plastic fragments found in the birds from those regions. The summary statistic means are the main data points being displayed, and they also include 95% confidence interval error bars as well as underlying data. I like that the data is separated by color and shape, and while I understand why they excluded the upper 5% of data I would have like to seen it especially because the averages seem so much larger than were most of the data lies. I also noticed that figure 4b doesn’t have feet/tops to the error bars, which isn’t really a bad thing just something I noticed.</p>
+</section>
+<section id="c.-aesthetic-clarity" class="level2">
+<h2 class="anchored" data-anchor-id="c.-aesthetic-clarity">c.&nbsp;Aesthetic clarity</h2>
+<p>Figure 4 looks quite cluttered but I appreciate the effort that went into making it easier to look at. Each location has a different color and shape in the underlying data but because there is so much of it all the points just blur together into a brown grey color unless you zoom in a lot. I also don’t like the choice to exclude the upper 5% of the data points because the means look so much larger than where most of the data is, so it appears like the excluded outliers are having a large effect on the means. I think the data to ink ratio is decent but could be improved because they try to display a lot of data but the formatting and text size of the axis are too large in comparison to the legend which actually tells the reader the point of the graph.</p>
 </section>
 </section>
 

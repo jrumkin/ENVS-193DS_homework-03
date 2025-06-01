@@ -4,10 +4,10 @@ author: "Jessi Rumkin"
 date: "May 22, 2025"
 format:
   html:
-    toc: true # use this to display a table of contents
+    toc: true # to display a table of contents
 execute:
-  message: false # use this to make sure messages don't show up
-  warning: false # use this to make sure warnings don't show up
+  message: false # make sure messages don't show up
+  warning: false # make sure warnings don't show up
 ---
 
 Link to GitHub repository: 
@@ -47,6 +47,16 @@ mydata_summary <-  mydata |> #make an object called mydata_summary using mydata 
             ci_upper = round(mean_score + 1.96 * (sd(final_productivity_score) / sqrt(length(final_productivity_score))),digits = 1) #find upper confidence interval at 95%
   )
 
+
+# exploring personal data distribution
+
+ggplot(data = mydata,
+       aes(sample = final_productivity_score)) +
+  geom_qq() +
+  geom_qq_line() +
+  facet_wrap(~accompanied)
+
+#almost normal data! Alone data is like not really that normal, there are some outliers so idk if this should count. 
 
 ```
 
@@ -157,7 +167,6 @@ For my personality and executive function type I tend to get more done when I ha
 
 ## b. Create a sketch (on paper) of your idea
 
-
 ## c. Make a draft of your visualization
 
 ## d. Write an artist statement
@@ -165,13 +174,24 @@ For my personality and executive function type I tend to get more done when I ha
 
 # Problem 3. Statstical Critique
 
-## a. Revist and Summarize
-
-Paper Citation: 
+Paper Citation: Robuck, A. R., Hudak, C. A., Agvent, L., Emery, G., Ryan, P. G., Perold, V., Powers, K. D., Pedersen, J., Thompson, M. A., Suca, J. J., Moore, M. J., Harms, C. A., Bugoni, L., Shield, G., Glass, T., Wiley, D. N., & Lohmann, R. (2022). Birds of a feather eat plastic Together: High levels of plastic ingestion in great shearwater adults and juveniles across their annual migratory cycle. Frontiers in Marine Science, 8. <https://doi.org/10.3389/fmars.2021.719721>
 
 DOI: [https://doi.org/10.3389/fmars.2021.719721](https://doi.org/10.3389/fmars.2021.719721)
 
-These authors are using the Kruskill Wallis test to determine if there are differences between 
+## a. Revist and Summarize
+
+These authors are using the Kruskill Wallis test to determine if there are differences between several different groups of bird region and age, and the variable being tested is plastic fragment size for both length and area. 
+
+![figure 4](figure4.png)
+
+
+## b. Visual clarity
+
+The authors clearly label the axis and legend of this figure, but I wish the legend was more prominent or the figure included a title to explain the point of the figure. On first glance it looks like the take away is that as plastic fragments get longer, they get wider or have more surface area, but the actual take away is that certain regions have larger plastic fragments found in the birds from those regions. The summary statistic means are the main data points being displayed, and they also include 95% confidence interval error bars as well as underlying data. I like that the data is separated by color and shape, and while I understand why they excluded the upper 5% of data I would have like to seen it especially because the averages seem so much larger than were most of the data lies. I also noticed that figure 4b doesn't have feet/tops to the error bars, which isn't really a bad thing just something I noticed. 
+
+## c. Aesthetic clarity
+
+Figure 4 looks quite cluttered but I appreciate the effort that went into making it easier to look at. Each location has a different color and shape in the underlying data but because there is so much of it all the points just blur together into a brown grey color unless you zoom in a lot. I also don't like the choice to exclude the upper 5% of the data points because the means look so much larger than where most of the data is, so it appears like the excluded outliers are having a large effect on the means. I think the data to ink ratio is decent but could be improved because they try to display a lot of data but the formatting and text size of the axis are too large in comparison to the legend which actually tells the reader the point of the graph. 
 
 
 
