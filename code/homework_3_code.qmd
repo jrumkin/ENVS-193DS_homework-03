@@ -10,7 +10,8 @@ execute:
   warning: false # use this to make sure warnings don't show up
 ---
 
-Link to GitHub repository: https://jrumkin.github.io/ENVS-193DS_homework-03/code/homework_3_code.html
+Link to GitHub repository: 
+[https://github.com/jrumkin/ENVS-193DS_homework-03](https://github.com/jrumkin/ENVS-193DS_homework-03)
 
 # Set Up
 
@@ -166,7 +167,11 @@ For my personality and executive function type I tend to get more done when I ha
 
 ## a. Revist and Summarize
 
+Paper Citation: 
 
+DOI: [https://doi.org/10.3389/fmars.2021.719721](https://doi.org/10.3389/fmars.2021.719721)
+
+These authors are using the Kruskill Wallis test to determine if there are differences between 
 
 
 

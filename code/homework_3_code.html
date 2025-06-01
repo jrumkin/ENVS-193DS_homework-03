@@ -89,6 +89,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#c.-caption" id="toc-c.-caption" class="nav-link" data-scroll-target="#c.-caption">c.&nbsp;Caption</a></li>
   <li><a href="#d.-table-presentation" id="toc-d.-table-presentation" class="nav-link" data-scroll-target="#d.-table-presentation">d.&nbsp;Table presentation</a></li>
   </ul></li>
+  <li><a href="#problem-2.-affective-visualization" id="toc-problem-2.-affective-visualization" class="nav-link" data-scroll-target="#problem-2.-affective-visualization">Problem 2. Affective Visualization</a>
+  <ul class="collapse">
+  <li><a href="#a.-describe-what-an-affective-visualization-could-look-like-for-personal-data." id="toc-a.-describe-what-an-affective-visualization-could-look-like-for-personal-data." class="nav-link" data-scroll-target="#a.-describe-what-an-affective-visualization-could-look-like-for-personal-data.">a. Describe what an affective visualization could look like for personal data.</a></li>
+  <li><a href="#b.-create-a-sketch-on-paper-of-your-idea" id="toc-b.-create-a-sketch-on-paper-of-your-idea" class="nav-link" data-scroll-target="#b.-create-a-sketch-on-paper-of-your-idea">b. Create a sketch (on paper) of your idea</a></li>
+  <li><a href="#c.-make-a-draft-of-your-visualization" id="toc-c.-make-a-draft-of-your-visualization" class="nav-link" data-scroll-target="#c.-make-a-draft-of-your-visualization">c.&nbsp;Make a draft of your visualization</a></li>
+  <li><a href="#d.-write-an-artist-statement" id="toc-d.-write-an-artist-statement" class="nav-link" data-scroll-target="#d.-write-an-artist-statement">d.&nbsp;Write an artist statement</a></li>
+  </ul></li>
+  <li><a href="#problem-3.-statstical-critique" id="toc-problem-3.-statstical-critique" class="nav-link" data-scroll-target="#problem-3.-statstical-critique">Problem 3. Statstical Critique</a>
+  <ul class="collapse">
+  <li><a href="#a.-revist-and-summarize" id="toc-a.-revist-and-summarize" class="nav-link" data-scroll-target="#a.-revist-and-summarize">a. Revist and Summarize</a></li>
+  </ul></li>
   </ul>
 </nav>
 </div>
@@ -125,7 +136,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Link to GitHub repository:</p>
+<p>Link to GitHub repository: <a href="https://github.com/jrumkin/ENVS-193DS_homework-03">https://github.com/jrumkin/ENVS-193DS_homework-03</a></p>
 <section id="set-up" class="level1">
 <h1>Set Up</h1>
 <div class="cell">
@@ -168,7 +179,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                           <span class="at">color =</span> accompanied)) <span class="sc">+</span></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">height =</span> <span class="dv">0</span>, <span class="co">#add geometry of jitter plot, 0 height jitter</span></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">width =</span> <span class="fl">0.2</span>, <span class="co">#0.2 jitter width</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">shape =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="co">#shape is open circles for the jitter points</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">shape =</span> <span class="dv">20</span>) <span class="sc">+</span> <span class="co">#shape is open circles for the jitter points</span></span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">data =</span> mydata_summary, <span class="co">#add a geometry of an error bar from data of mydata_summary</span></span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>                <span class="fu">aes</span>(<span class="at">x =</span> accompanied,</span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>                    <span class="at">y =</span> mean_score,</span>
@@ -226,6 +237,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#visualizing productivity vs sleep</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>mydata_sleep <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> mydata, <span class="co">#creating a visualization with ggplot, obect name is mydata_sleep</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> sleep_decimal_hour, <span class="co">#sleep in decimal hours on the x axis</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> final_productivity_score)) <span class="sc">+</span> <span class="co">#final productivity score on the y axis</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="co">#add scatter plot geometry</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> <span class="cn">TRUE</span>) <span class="co">#add a line of best fit, lm = linear model, se = standard error shading is shown</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>mydata_sleep <span class="co">#print the mydata_sleep plot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="homework_3_code_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
 </div>
 </section>
 <section id="c.-caption" class="level2">
@@ -235,39 +262,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="d.-table-presentation" class="level2">
 <h2 class="anchored" data-anchor-id="d.-table-presentation">d.&nbsp;Table presentation</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#using gt package to make a table</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>summary_table <span class="ot">&lt;-</span> <span class="fu">gt</span>(mydata_summary) <span class="sc">|&gt;</span> <span class="co"># creating a summary table of final productivity score using the previously created mydata_summary</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>( <span class="co">#manual labels for each column</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_score =</span> <span class="st">"Mean Score"</span>,</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd =</span> <span class="st">"Standard Deviation"</span>,</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">se =</span> <span class="st">"Standard Error"</span>,</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">ci_lower =</span> <span class="st">"Confidence Interval, lower"</span>,</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">ci_upper =</span> <span class="st">"Confidence Interval, upper"</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>( <span class="co">#title that appears above the table</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Productivity Score Calculation Summary by Study Session Type"</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>summary_table <span class="co">#print the table</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#using gt package to make a table</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>summary_table <span class="ot">&lt;-</span> <span class="fu">gt</span>(mydata_summary) <span class="sc">|&gt;</span> <span class="co"># creating a summary table of final productivity score using the previously created mydata_summary</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>( <span class="co">#manual labels for each column</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_score =</span> <span class="st">"Mean Score"</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd =</span> <span class="st">"Standard Deviation"</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">se =</span> <span class="st">"Standard Error"</span>,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">ci_lower =</span> <span class="st">"Confidence Interval, lower"</span>,</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">ci_upper =</span> <span class="st">"Confidence Interval, upper"</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>( <span class="co">#title that appears above the table</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Productivity Score Calculation Summary by Study Session Type"</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>summary_table <span class="co">#print the table</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="juqddzmopg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#juqddzmopg table {
+<div id="vgudrecjzp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#vgudrecjzp table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#juqddzmopg thead, #juqddzmopg tbody, #juqddzmopg tfoot, #juqddzmopg tr, #juqddzmopg td, #juqddzmopg th {
+#vgudrecjzp thead, #vgudrecjzp tbody, #vgudrecjzp tfoot, #vgudrecjzp tr, #vgudrecjzp td, #vgudrecjzp th {
   border-style: none;
 }
 
-#juqddzmopg p {
+#vgudrecjzp p {
   margin: 0;
   padding: 0;
 }
 
-#juqddzmopg .gt_table {
+#vgudrecjzp .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -293,12 +320,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-left-color: #D3D3D3;
 }
 
-#juqddzmopg .gt_caption {
+#vgudrecjzp .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#juqddzmopg .gt_title {
+#vgudrecjzp .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -310,7 +337,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-width: 0;
 }
 
-#juqddzmopg .gt_subtitle {
+#vgudrecjzp .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -322,7 +349,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-width: 0;
 }
 
-#juqddzmopg .gt_heading {
+#vgudrecjzp .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -334,13 +361,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#juqddzmopg .gt_bottom_border {
+#vgudrecjzp .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#juqddzmopg .gt_col_headings {
+#vgudrecjzp .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -355,7 +382,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#juqddzmopg .gt_col_heading {
+#vgudrecjzp .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -375,7 +402,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#juqddzmopg .gt_column_spanner_outer {
+#vgudrecjzp .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -387,15 +414,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 4px;
 }
 
-#juqddzmopg .gt_column_spanner_outer:first-child {
+#vgudrecjzp .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#juqddzmopg .gt_column_spanner_outer:last-child {
+#vgudrecjzp .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#juqddzmopg .gt_column_spanner {
+#vgudrecjzp .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -407,11 +434,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   width: 100%;
 }
 
-#juqddzmopg .gt_spanner_row {
+#vgudrecjzp .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#juqddzmopg .gt_group_heading {
+#vgudrecjzp .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -437,7 +464,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   text-align: left;
 }
 
-#juqddzmopg .gt_empty_group_heading {
+#vgudrecjzp .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -452,15 +479,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: middle;
 }
 
-#juqddzmopg .gt_from_md > :first-child {
+#vgudrecjzp .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#juqddzmopg .gt_from_md > :last-child {
+#vgudrecjzp .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#juqddzmopg .gt_row {
+#vgudrecjzp .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -479,7 +506,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#juqddzmopg .gt_stub {
+#vgudrecjzp .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -492,7 +519,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#juqddzmopg .gt_stub_row_group {
+#vgudrecjzp .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -506,15 +533,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: top;
 }
 
-#juqddzmopg .gt_row_group_first td {
+#vgudrecjzp .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#juqddzmopg .gt_row_group_first th {
+#vgudrecjzp .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#juqddzmopg .gt_summary_row {
+#vgudrecjzp .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -524,16 +551,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#juqddzmopg .gt_first_summary_row {
+#vgudrecjzp .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#juqddzmopg .gt_first_summary_row.thick {
+#vgudrecjzp .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#juqddzmopg .gt_last_summary_row {
+#vgudrecjzp .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -543,7 +570,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#juqddzmopg .gt_grand_summary_row {
+#vgudrecjzp .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -553,7 +580,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#juqddzmopg .gt_first_grand_summary_row {
+#vgudrecjzp .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -563,7 +590,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-color: #D3D3D3;
 }
 
-#juqddzmopg .gt_last_grand_summary_row_top {
+#vgudrecjzp .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -573,11 +600,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#juqddzmopg .gt_striped {
+#vgudrecjzp .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#juqddzmopg .gt_table_body {
+#vgudrecjzp .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -586,7 +613,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#juqddzmopg .gt_footnotes {
+#vgudrecjzp .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -600,7 +627,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#juqddzmopg .gt_footnote {
+#vgudrecjzp .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -609,7 +636,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#juqddzmopg .gt_sourcenotes {
+#vgudrecjzp .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -623,7 +650,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#juqddzmopg .gt_sourcenote {
+#vgudrecjzp .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -631,72 +658,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#juqddzmopg .gt_left {
+#vgudrecjzp .gt_left {
   text-align: left;
 }
 
-#juqddzmopg .gt_center {
+#vgudrecjzp .gt_center {
   text-align: center;
 }
 
-#juqddzmopg .gt_right {
+#vgudrecjzp .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#juqddzmopg .gt_font_normal {
+#vgudrecjzp .gt_font_normal {
   font-weight: normal;
 }
 
-#juqddzmopg .gt_font_bold {
+#vgudrecjzp .gt_font_bold {
   font-weight: bold;
 }
 
-#juqddzmopg .gt_font_italic {
+#vgudrecjzp .gt_font_italic {
   font-style: italic;
 }
 
-#juqddzmopg .gt_super {
+#vgudrecjzp .gt_super {
   font-size: 65%;
 }
 
-#juqddzmopg .gt_footnote_marks {
+#vgudrecjzp .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#juqddzmopg .gt_asterisk {
+#vgudrecjzp .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#juqddzmopg .gt_indent_1 {
+#vgudrecjzp .gt_indent_1 {
   text-indent: 5px;
 }
 
-#juqddzmopg .gt_indent_2 {
+#vgudrecjzp .gt_indent_2 {
   text-indent: 10px;
 }
 
-#juqddzmopg .gt_indent_3 {
+#vgudrecjzp .gt_indent_3 {
   text-indent: 15px;
 }
 
-#juqddzmopg .gt_indent_4 {
+#vgudrecjzp .gt_indent_4 {
   text-indent: 20px;
 }
 
-#juqddzmopg .gt_indent_5 {
+#vgudrecjzp .gt_indent_5 {
   text-indent: 25px;
 }
 
-#juqddzmopg .katex-display {
+#vgudrecjzp .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#juqddzmopg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#vgudrecjzp div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -718,19 +745,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_left" headers="accompanied">Accompanied</td>
-<td class="gt_row gt_right" headers="mean_score">7.4</td>
-<td class="gt_row gt_right" headers="sd">3.6</td>
-<td class="gt_row gt_right" headers="se">1.0</td>
-<td class="gt_row gt_right" headers="ci_lower">5.5</td>
-<td class="gt_row gt_right" headers="ci_upper">9.3</td>
+<td class="gt_row gt_right" headers="mean_score">8.9</td>
+<td class="gt_row gt_right" headers="sd">4.9</td>
+<td class="gt_row gt_right" headers="se">1.2</td>
+<td class="gt_row gt_right" headers="ci_lower">6.6</td>
+<td class="gt_row gt_right" headers="ci_upper">11.2</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="accompanied">Alone</td>
-<td class="gt_row gt_right" headers="mean_score">4.9</td>
-<td class="gt_row gt_right" headers="sd">2.7</td>
-<td class="gt_row gt_right" headers="se">0.7</td>
-<td class="gt_row gt_right" headers="ci_lower">3.6</td>
-<td class="gt_row gt_right" headers="ci_upper">6.2</td>
+<td class="gt_row gt_right" headers="mean_score">5.7</td>
+<td class="gt_row gt_right" headers="sd">3.4</td>
+<td class="gt_row gt_right" headers="se">0.8</td>
+<td class="gt_row gt_right" headers="ci_lower">4.2</td>
+<td class="gt_row gt_right" headers="ci_upper">7.2</td>
 </tr>
 </tbody>
 </table>
@@ -738,6 +765,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+</section>
+</section>
+<section id="problem-2.-affective-visualization" class="level1">
+<h1>Problem 2. Affective Visualization</h1>
+<section id="a.-describe-what-an-affective-visualization-could-look-like-for-personal-data." class="level2">
+<h2 class="anchored" data-anchor-id="a.-describe-what-an-affective-visualization-could-look-like-for-personal-data.">a. Describe what an affective visualization could look like for personal data.</h2>
+<p>For my personality and executive function type I tend to get more done when I have external cues or deadlines, so I’m not surprised that my data shows I may get more done when I am working with others. I want my affective visualization to focus on community and the achievement of actually getting all that work done. Something I wasn’t expecting was that the plot is also a visualization of all my time and effort, so I also want the affective visualization to focus on accomplishment and not on comparison.</p>
+</section>
+<section id="b.-create-a-sketch-on-paper-of-your-idea" class="level2">
+<h2 class="anchored" data-anchor-id="b.-create-a-sketch-on-paper-of-your-idea">b. Create a sketch (on paper) of your idea</h2>
+</section>
+<section id="c.-make-a-draft-of-your-visualization" class="level2">
+<h2 class="anchored" data-anchor-id="c.-make-a-draft-of-your-visualization">c.&nbsp;Make a draft of your visualization</h2>
+</section>
+<section id="d.-write-an-artist-statement" class="level2">
+<h2 class="anchored" data-anchor-id="d.-write-an-artist-statement">d.&nbsp;Write an artist statement</h2>
+</section>
+</section>
+<section id="problem-3.-statstical-critique" class="level1">
+<h1>Problem 3. Statstical Critique</h1>
+<section id="a.-revist-and-summarize" class="level2">
+<h2 class="anchored" data-anchor-id="a.-revist-and-summarize">a. Revist and Summarize</h2>
+<p>Paper Citation:</p>
+<p>DOI: <a href="https://doi.org/10.3389/fmars.2021.719721">https://doi.org/10.3389/fmars.2021.719721</a></p>
+<p>These authors are using the Kruskill Wallis test to determine if there are differences between</p>
 </section>
 </section>
 
