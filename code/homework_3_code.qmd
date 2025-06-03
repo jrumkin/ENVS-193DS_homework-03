@@ -9,7 +9,6 @@ execute:
   message: false # make sure messages don't show up
   warning: false # make sure warnings don't show up
 resources: 
-  - code/data_sketch.PNG
   - code/Affective.png
   - code/figure4.png
 ---
@@ -148,7 +147,7 @@ ggplot(data = mydata, #create a visualization using ggplot using mydata
 
 ## b. Create a sketch (on paper) of your idea
 
-![Affective draft](affective_draft.png)
+![affective data sketch](data_sketch.png)
 
 ## c. Make a draft of your visualization
 
