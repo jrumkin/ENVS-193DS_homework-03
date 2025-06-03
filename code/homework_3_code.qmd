@@ -8,6 +8,10 @@ format:
 execute:
   message: false # make sure messages don't show up
   warning: false # make sure warnings don't show up
+resources: 
+  - code/affective_draft.PNG
+  - code/Affective.png
+  - code/figure4.png
 ---
 
 Link to GitHub repository: 
