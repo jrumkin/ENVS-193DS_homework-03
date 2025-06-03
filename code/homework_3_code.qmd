@@ -1,7 +1,7 @@
 ---
 title: "Homework 3"
 author: "Jessi Rumkin"
-date: "May 22, 2025"
+date: "June 2, 2025"
 format:
   html:
     toc: true # to display a table of contents
@@ -159,7 +159,9 @@ This data visualization shows my personal data on study habits and productivity 
 
 # Problem 3. Statstical Critique
 
-Paper Citation: Robuck, A. R., Hudak, C. A., Agvent, L., Emery, G., Ryan, P. G., Perold, V., Powers, K. D., Pedersen, J., Thompson, M. A., Suca, J. J., Moore, M. J., Harms, C. A., Bugoni, L., Shield, G., Glass, T., Wiley, D. N., & Lohmann, R. (2022). Birds of a feather eat plastic Together: High levels of plastic ingestion in great shearwater adults and juveniles across their annual migratory cycle. Frontiers in Marine Science, 8. <https://doi.org/10.3389/fmars.2021.719721>
+Paper Citation: 
+
+Robuck, A. R., Hudak, C. A., Agvent, L., Emery, G., Ryan, P. G., Perold, V., Powers, K. D., Pedersen, J., Thompson, M. A., Suca, J. J., Moore, M. J., Harms, C. A., Bugoni, L., Shield, G., Glass, T., Wiley, D. N., & Lohmann, R. (2022). Birds of a feather eat plastic Together: High levels of plastic ingestion in great shearwater adults and juveniles across their annual migratory cycle. Frontiers in Marine Science, 8. <https://doi.org/10.3389/fmars.2021.719721>
 
 DOI: [https://doi.org/10.3389/fmars.2021.719721](https://doi.org/10.3389/fmars.2021.719721)
 
