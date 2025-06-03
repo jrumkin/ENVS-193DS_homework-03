@@ -47,17 +47,6 @@ mydata_summary <-  mydata |> #make an object called mydata_summary using mydata 
             ci_upper = round(mean_score + 1.96 * (sd(final_productivity_score) / sqrt(length(final_productivity_score))),digits = 1) #find upper confidence interval at 95%
   )
 
-
-# exploring personal data distribution
-
-ggplot(data = mydata,
-       aes(sample = final_productivity_score)) +
-  geom_qq() +
-  geom_qq_line() +
-  facet_wrap(~accompanied)
-
-#almost normal data! Alone data is like not really that normal, there are some outliers so idk if this should count. 
-
 ```
 
 ```{r}
@@ -76,7 +65,7 @@ mydata_means <- ggplot(data = mydata, #use ggplot to create a visualization call
                     y = mean_score,
                     ymin = ci_lower,
                     ymax = ci_upper,
-                    width = 0.15)) +
+                    width = 0.12)) +
   geom_point(data = mydata_summary, #add geometry of a point from mydata_summary of the mean productivity score
              aes(x = accompanied,
                  y = mean_score),
@@ -87,54 +76,20 @@ mydata_means <- ggplot(data = mydata, #use ggplot to create a visualization call
        y = "Final Productivity Score",
        title = "Mean Productivity Score between \nAccompanied and Alone study sessions") +
   scale_color_manual(values = c("Accompanied" = "#377b42", #manual colors for groups 
-                                "Alone" = "#0c78bd")) +
+                                "Alone" = "#AA71BA")) +
   theme(legend.position = "none") #removing the legend for redundancy
 
 mydata_means #display the visualization
 
 
+
+
 ```
 
-```{r}
-
-
-# visualizing deadline type vs final productivity score
-mydata_deadlinesummary <- mydata |> 
-  group_by(deadline_type) |> 
-  summarise(mean_score = mean(final_productivity_score))
-
-mydata_deadline <- ggplot(data = mydata,
-                          aes(x = deadline_type,
-                              y = final_productivity_score,
-                              color = deadline_type)) +
-  geom_jitter(height = 0,
-              width = 0.2,
-              shape = 1) +
-  geom_point(data = mydata_deadlinesummary,
-             aes(x = deadline_type,
-                 y = mean_score),
-             inherit.aes = FALSE,
-             color = "black",
-             size = 2)
-
-
-mydata_deadline
-
-#visualizing productivity vs sleep
-
-mydata_sleep <- ggplot(data = mydata, #creating a visualization with ggplot, obect name is mydata_sleep
-       aes(x = sleep_decimal_hour, #sleep in decimal hours on the x axis
-           y = final_productivity_score)) + #final productivity score on the y axis
-  geom_point() + #add scatter plot geometry
-  geom_smooth(method = lm, se = TRUE) #add a line of best fit, lm = linear model, se = standard error shading is shown
-
-mydata_sleep #print the mydata_sleep plot
-
-```
 
 ## c. Caption
 
-**Figure 1. Average productivity scores are higher for accompanied study sessions compared to alone study sessions. ** The black point is the mean productivity score in each group, with error bars showing the confidence interval of the mean at a 95% confidence level, while open points represent individual data points. Colored by group type of accompanied (n = __) and alone (n = __)
+**Figure 1. Average productivity scores are higher for accompanied study sessions compared to alone study sessions. ** The black point is the mean productivity score in each group, with error bars showing the confidence interval of the mean at a 95% confidence level, while open points represent individual data points. Colored by group type of accompanied (n = 17) and alone (n = 19).
 
 ## d. Table presentation
 
@@ -144,7 +99,7 @@ mydata_sleep #print the mydata_sleep plot
 
 summary_table <- gt(mydata_summary) |> # creating a summary table of final productivity score using the previously created mydata_summary
   cols_label( #manual labels for each column
-    mean_score = "Mean Score",
+    mean_score = "Mean Score", 
     sd = "Standard Deviation",
     se = "Standard Error",
     ci_lower = "Confidence Interval, lower",
@@ -163,13 +118,42 @@ summary_table #print the table
 
 ## a. Describe what an affective visualization could look like for personal data.
 
-For my personality and executive function type I tend to get more done when I have external cues or deadlines, so I'm not surprised that my data shows I may get more done when I am working with others. I want my affective visualization to focus on community and the achievement of actually getting all that work done. Something I wasn't expecting was that the plot is also a visualization of all my time and effort, so I also want the affective visualization to focus on accomplishment and not on comparison. 
+For my personality and executive function type I tend to get more done when I have external cues or deadlines, so I'm not surprised that my data shows I may get more done when I am working with others. I want my affective visualization to focus on the achievement of actually getting all that work done. Something I wasn't expecting was that the plot is also a visualization of all my time and effort, so I also want the affective visualization to focus on accomplishment and not on comparison. When I think of progress or accomplishments in art I think of all the "climbing a mountain" analogies so I'm also thinking I will use that and have the mountain range represent the slope of my productivity over time.
+
+```{r}
+
+#data exploration for affective visualization
+
+mydata$date <- mdy(mydata$date) #changing the date field in mydata from character data to date data using the lubricate package
+
+ggplot(data = mydata, #create a visualization using ggplot using mydata
+       aes(x = date, #date field on x axis
+           y = final_productivity_score)) + #final productivity score is on y axis
+  geom_point() + #add scatter plot of productivity scores vs date
+  geom_smooth(method = lm, se = FALSE) + #adds a line of best fit using linear model method and error shading is removed
+  labs(x = "Date", #manual name for x axis name
+       y = "Final Productivity Score", #manual name for y axis
+       title = "Productivity Scores Throughout Spring Quarter 2025") #title name
+
+#plot shows that I was more productive as the quarter progressed, so I want the background to show that. I want the mountains in the background to show the lm line
+
+#the other plot I want to use is the main visualization of productivity score by accompanied vs alone but I want to focus on the data points in the jitter, not the means or standard error. 
+
+
+```
 
 ## b. Create a sketch (on paper) of your idea
 
+![Affective draft](data/affective_draft.png)
+
 ## c. Make a draft of your visualization
 
+![Affective visuaalization](data/Affective.png)
+
+
 ## d. Write an artist statement
+
+This data visualization shows my personal data on study habits and productivity throughout the Spring 2025 quarter. The green doodles are data points for when I studied with other people and the purple doodles are data points when I studied on my own, and each dot around or in each doodle represents my focus score for that study session. I took a lot of inspiration from Stefanie Posavec and Giorgia Lupi’s Dear Data project for representing data points as small illustrations. I drew the visualization on my iPad using an app called ProCreate. I started by putting a few of my ideas onto one page to see what I liked and honed the idea from there. I drew the mountain range first to represent the slope of my productivity scores over time. I then drew the data points based off the main jitter and mean plot created in Problem 1b and then drew the illustrations last while matching them to actual observations.
 
 
 # Problem 3. Statstical Critique
@@ -182,7 +166,7 @@ DOI: [https://doi.org/10.3389/fmars.2021.719721](https://doi.org/10.3389/fmars.2
 
 These authors are using the Kruskill Wallis test to determine if there are differences between several different groups of bird region and age, and the variable being tested is plastic fragment size for both length and area. 
 
-![figure 4](figure4.png)
+![figure 4](data/figure4.png)
 
 
 ## b. Visual clarity
@@ -192,6 +176,10 @@ The authors clearly label the axis and legend of this figure, but I wish the leg
 ## c. Aesthetic clarity
 
 Figure 4 looks quite cluttered but I appreciate the effort that went into making it easier to look at. Each location has a different color and shape in the underlying data but because there is so much of it all the points just blur together into a brown grey color unless you zoom in a lot. I also don't like the choice to exclude the upper 5% of the data points because the means look so much larger than where most of the data is, so it appears like the excluded outliers are having a large effect on the means. I think the data to ink ratio is decent but could be improved because they try to display a lot of data but the formatting and text size of the axis are too large in comparison to the legend which actually tells the reader the point of the graph. 
+
+## d. Recomendations
+
+I would like to see the upper 5% of data that was excluded from the graph, or if they are skewing the data that much I would like confirmation they were excluded from the mean calculations as well. I also would make the legend equally sized compared to the axes titles to emphasize the point of the figure. This could also be done with a title or if the caption included the main finding. I understand why a main finding isn't always included in order to lessen bias when interpreting the data, but if there is nothing pointing towards the legend then I think it should be bigger. 
 
 
 
