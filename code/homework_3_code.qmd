@@ -144,7 +144,8 @@ ggplot(data = mydata, #create a visualization using ggplot using mydata
 
 ## b. Create a sketch (on paper) of your idea
 
-![affective data sketch](data_sketch.png)
+![affective data visualization sketch](sketch_affective.png)
+
 
 ## c. Make a draft of your visualization
 

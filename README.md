@@ -21,6 +21,7 @@ This project covers 3 parts: Personal data exploration and visualization, person
 mydata.csv is a file that contains data for my personal data project. Each row is an observation that includes data like date, start and end time of the study session, duration (decimal hour), sleep (decimal hour), focus score (details below), weather, and company type (alone, friend, or aquaintence).
 
 Focus Score was self determined using this guideline: (1 is the lowest, 5 is the highest, discrete numeric data)
+
 1: Constantly distracted + brain fog, low critical thinking applied
 
 2: Frequently distracted, trouble staying on task, bored, needed to re-do or re-read instructions many times
