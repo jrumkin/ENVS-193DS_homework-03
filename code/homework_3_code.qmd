@@ -9,7 +9,7 @@ execute:
   message: false # make sure messages don't show up
   warning: false # make sure warnings don't show up
 resources: 
-  - ENVS-193DS_homework-03/sketch.png
+  - code/data_sketch.PNG
   - code/Affective.png
   - code/figure4.png
 ---
