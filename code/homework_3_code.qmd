@@ -144,11 +144,11 @@ ggplot(data = mydata, #create a visualization using ggplot using mydata
 
 ## b. Create a sketch (on paper) of your idea
 
-![Affective draft](data/affective_draft.png)
+![Affective draft](affective_draft.png)
 
 ## c. Make a draft of your visualization
 
-![Affective visuaalization](data/Affective.png)
+![Affective visuaalization](Affective.png)
 
 
 ## d. Write an artist statement
@@ -166,7 +166,7 @@ DOI: [https://doi.org/10.3389/fmars.2021.719721](https://doi.org/10.3389/fmars.2
 
 These authors are using the Kruskill Wallis test to determine if there are differences between several different groups of bird region and age, and the variable being tested is plastic fragment size for both length and area. 
 
-![figure 4](data/figure4.png)
+![figure 4](figure4.png)
 
 
 ## b. Visual clarity
